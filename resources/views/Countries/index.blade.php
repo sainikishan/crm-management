@@ -11,7 +11,7 @@
 @endif
         <div class="col-md-16">
             <div class="card">
-                <form method="get" action="{{route('company.data')}}">
+                {{-- <form method="get" action="{{route('company.data')}}"> --}}
                 <div class="card-header">{{ __('List Company') }} 
                 
                     {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
@@ -35,10 +35,10 @@
                               <thead class="thead-light" id="myTable">
                                 <tr>
                                   <th> ID</th>
-                                  <th>Name</th>
-                                  <th>E-mail</th>
-                                  <th>Logo</th>
-                                  <th>Url</th>
+                                  <th>Country</th>
+                                  <th>Calling Code</th>
+                                  <th>Flag</th>
+                                  
                                   <th>Action</th>
                                 </tr>
                               </thead>
@@ -46,30 +46,30 @@
 
                                 
 
-                               @foreach($companies as $company)
+                               @foreach($country as $countryies)
           
                                <tr>
-                                  <td>{{$company->id}}</td>
-                                  <td>{{$company->name}}</td>
-                                  <td>{{$company->email}}</td>
-                                  <td><img src="{{url('image/'.$company->logo)}}" width="70px" height="70px" alt="logo"></td>
-                                  <td>{{$company->url}}</td>
+                                  <td>{{$countryies->id}}</td>
+                                  <td>{{$countryies->name}}</td>
+                                  <td>{{$countryies->calling_code}}</td>
+                                  <td><img src="{{url('image/'.$countryies->flag)}}" width="70px" height="70px" alt="flag"></td>
+                                 
                                   <td>
-                                    <form action="{{route('companies.destroy', $company->id)}}" method="POST">
+                                    <form action="{{route('countries.destroy', $countryies->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger dtn-link" onclick="return confirm('Do You want to delete it')">Delete</button>
                                     </form>
                                 </td>
 
-                                <td><a href="{{route("companies.edit",$company->id)}}" class="btn btn-primary dtn-link">Edit</a></td>                                     
+                                <td><a href="{{route("countries.edit",$countryies->id)}}" class="btn btn-primary dtn-link">Edit</a></td>                                     
                                 </tr>
           
                                @endforeach
           
                               </tbody>
                             </table>
-                            {!! $companies->links() !!}
+                            
 
                             <script>
                                 function myFunction() {

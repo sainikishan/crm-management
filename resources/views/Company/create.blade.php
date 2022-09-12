@@ -16,7 +16,8 @@
         <div class="col-md-12">
             
             <div class="card">
-                <div class="card-header">{{ __('Create Company') }} <a class="btn btn-danger dtn-link" style="float: right;" href="{{route('companies.index') }}">Back</a></div>
+                <div class="card-header">{{ __('Create Company') }}
+                     <a class="btn btn-danger dtn-link" style="float: right;" href="{{route('companies.index') }}">Back</a></div>
                 <div class="card-body">
                     <div class="card-body">
                         <form method="POST" action="{{route('companies.store') }}" enctype="multipart/form-data">

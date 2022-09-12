@@ -24,6 +24,13 @@ class EmployeeController extends Controller
         
     }
 
+    public function data(Request $request)
+    {
+        $limit=$request->page;
+       $url="http://127.0.0.1:8000/employees?page=".$limit;
+return redirect($url);
+   
+    }
     /**
      * Show the form for creating a new resource.
      *

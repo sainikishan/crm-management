@@ -7,7 +7,8 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\URL;
 
 class CompanyController extends Controller
 {
@@ -17,14 +18,27 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+        // $limits = $request->limit ?? 5; 
         Paginator::useBootstrap();
         $companies= Company::paginate(1);
         return view('Company.index',compact('companies'));
        
     }
 
+    public function data(Request $request)
+    {
+        $limit=$request->page;
+       $url="http://127.0.0.1:8000/companies?page=".$limit;
+return redirect($url);
+   
+    }
 
+    // public function autocompleteSearch(Request $request)
+    // {
+    //       $query = $request->get('query');
+    //       $filterResult = Company::where('name', 'LIKE', '%'. $query. '%')->get();
+    //       return response()->json($filterResult);
+    // } 
 
     /**
      * Show the form for creating a new resource.
@@ -60,6 +74,7 @@ class CompanyController extends Controller
             'logo' =>   $request->logo,
             'url'   => $request->url,
         ]);
+
         return redirect()->back()->with('submit', 'Submit Succesfull');
         
     }
@@ -115,7 +130,7 @@ class CompanyController extends Controller
             'logo' =>   $logoName,
             'url'   => $request->url,
         ]);
-        return redirect()->route('companies.index')->with('Update', 'Update Succesfull');;
+        return redirect()->route('companies.index')->with('Update', 'Update Succesfull');
     }
 
     /**
