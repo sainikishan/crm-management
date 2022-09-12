@@ -18,6 +18,7 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {  
         // $limits = $request->limit ?? 5; 
         Paginator::useBootstrap();
         $companies= Company::paginate(1);
